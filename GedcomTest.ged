@@ -1,0 +1,117 @@
+0 NOTE SSW-555 Spring 2014
+0 NOTE Team3 Acceptance Tests
+
+0 NOTE Test Family1 Data
+0 @I1@ INDI
+1 NAME Father1
+1 SEX M
+1 FAMS @F1@
+1 BIRT
+2 DATE 01 FEB 1970
+0 @I2@ INDI
+1 NAME Mother1
+1 SEX F
+1 FAMS @F1@
+1 BIRT
+2 DATE 01 FEB 1971
+0 @I3@ INDI
+1 NAME Son1
+1 SEX M
+1 FAMC @F1@
+1 BIRT
+2 DATE 01 FEB 2010
+0 @I4@ INDI
+1 NAME Daughter1
+1 SEX F
+1 FAMC @F1@
+1 BIRT
+2 DATE 01 FEB 2011
+0 @F1@ FAM
+1 HUSB @I1@
+1 WIFE @I2@
+1 MARR
+1 CHIL @I3@
+1 CHIL @I4@
+
+0 NOTE Begin Acceptance Tests
+
+0 NOTE Acceptance Test: getGedcomData
+0 NOTE This test is done in code.
+0 NOTE Data being read in should be printed to the screen during development to ensure it is working.
+
+0 NOTE Acceptance Test: setInputData
+0 NOTE This test is done in code.
+0 NOTE Data should be successfully retrieved when array or hash table is called.
+
+0 NOTE Acceptance Test: displayPerson
+0 NOTE This test is done in code.
+0 NOTE Person should be searchable by name, but entering it in at a prompt.
+
+0 NOTE Acceptance Test: displayData
+0 NOTE This test is done in code.
+0 NOTE All GEDCOM data stored in the Data Structure should be displayed.
+
+0 NOTE Acceptance Test: checkDatesChrono
+0 NOTE This test should trigger an alert that a person's death precedes their birth.
+0 @I10@ INDI
+1 NAME Chrono Test
+1 BIRT
+2 DATE 01 FEB 1970
+1 DEAT
+2 DATE 01 FEB 1960
+
+0 NOTE Acceptance Test: checkIncest
+0 NOTE This test should trigger an alert that a person is married to a sibling.
+0 @I5@ INDI
+1 NAME Father2
+1 SEX M
+1 FAMS @F1@
+1 BIRT
+2 DATE 01 FEB 1970
+0 @I6@ INDI
+1 NAME Mother2
+1 SEX F
+1 FAMS @F1@
+1 BIRT
+2 DATE 01 FEB 1971
+0 @I7@ INDI
+1 NAME Son2
+1 SEX M
+1 FAMC @F2@
+1 FAMS @F3@
+1 BIRT
+2 DATE 01 FEB 2010
+0 @I8@ INDI
+1 NAME Daughter2
+1 SEX F
+1 FAMC @F2@
+1 FAMS @F3@
+1 BIRT
+2 DATE 01 FEB 2011
+0 @F2@ FAM
+1 HUSB @I5@
+1 WIFE @I6@
+1 MARR
+1 CHIL @I7@
+1 CHIL @I8@
+0 @F3@ FAM
+1 HUSB @I7@
+1 WIFE @I8@
+1 MARR
+2 DATE 01 FEB 2014
+
+0 NOTE Acceptance Test: checkGender
+0 NOTE This test should trigger an alert that a person's gender doesn't match their marital role.
+0 @I11@ INDI
+1 NAME Gender Male
+1 SEX M
+1 FAMS @F3@
+0 @I12@ INDI
+1 NAME Gender Female
+1 SEX F
+1 FAMS @F3@
+0 @F3@ FAM
+1 HUSB @I12@
+1 WIFE @I11@
+1 MARR
+0 TRLR
