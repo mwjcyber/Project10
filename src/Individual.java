@@ -132,11 +132,7 @@ public class Individual
 			}
 		}		
 		return indSpouses;
-<<<<<<< HEAD
 	}
-	
-=======
-	}	
 
 	public void display()
 	{
@@ -168,5 +164,4 @@ public class Individual
 		System.out.println("Line Number	"+lineNumber);
 	}
 		
->>>>>>> a55843266f95d6b3b14ed8069f5db665d9b029db
 }
