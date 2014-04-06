@@ -132,6 +132,41 @@ public class Individual
 			}
 		}		
 		return indSpouses;
+<<<<<<< HEAD
 	}
 	
+=======
+	}	
+
+	public void display()
+	{
+		System.out.println("ID:	"+id);
+		System.out.println("Name:	"+name);
+		System.out.println("Gender:	"+gender);
+		System.out.println("Birth Date:	"+birthDate.getTime().toString());
+		if ( deathDate.size() > 0 )
+		{
+				for (int i = 0; i<deathDate.size(); i++)
+				{
+					System.out.println("Death Date:		"+deathDate.get(i).getTime().toString());
+				}
+		}
+		if ( !famS.isEmpty() )
+		{
+			String line = "Families Where a Spouse:	";
+			for (Iterator i = famS.iterator(); i.hasNext();)
+				line = line + i.next() + " ";
+			System.out.println(line);
+		}
+		if ( !famC.isEmpty() )
+		{
+			String line = "Families Where a Child:	";
+			for (Iterator i = famC.iterator(); i.hasNext();)
+				line = line + i.next() + " ";
+			System.out.println(line);
+		}
+		System.out.println("Line Number	"+lineNumber);
+	}
+		
+>>>>>>> a55843266f95d6b3b14ed8069f5db665d9b029db
 }
