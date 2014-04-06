@@ -132,6 +132,6 @@ public class Individual
 			}
 		}		
 		return indSpouses;
-	}	
+	}
 	
 }

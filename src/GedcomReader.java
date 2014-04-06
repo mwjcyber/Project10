@@ -110,7 +110,7 @@ public class GedcomReader
 				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s death occurs before birth."));
 			}
 			
-			if (ErrorFinder.checkGender(famIndex, indIndex.get(s)))
+			if (ErrorFinder.checkGender(famIndex, indIndex, indIndex.get(s)))
 			{
 				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s gender and spouse role don't match."));
 			}
