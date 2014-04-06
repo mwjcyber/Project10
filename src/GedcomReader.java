@@ -274,4 +274,20 @@ public class GedcomReader
 		}
 	}
 	
+	public Individual getIndividual(String id) {
+		Individual i;
+		try
+		{
+			i = indIndex.get(id);
+			
+		}
+		catch(NullPointerException e)
+		{
+			return null;
+		}
+		
+		return i;
+	}
+	
+	
 }

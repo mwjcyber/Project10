@@ -66,7 +66,16 @@ public class GedcomApp {
 								}
 								else
 								{
-									// Call individual view
+									// Find the individual
+									Individual ind = parser.getIndividual(args[2]);
+									if ( ind == null)
+									{
+										System.out.println("Individual ID not found in given Gedcom file");
+									}
+									else
+									{
+										ind.display();
+									}
 									break;
 								}
 							}
