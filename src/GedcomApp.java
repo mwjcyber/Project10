@@ -1,4 +1,8 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class GedcomApp {
@@ -26,12 +30,13 @@ public class GedcomApp {
 				{
 					GedcomReader parser = new GedcomReader();
 					parser.readGedcom(file);
-					ErrorList el = parser.findErrors();					
+					ErrorList el = parser.findErrors();	
 					
 					if ( el.size() == 0 ) {
 						System.out.println("File parsed! No Errors or Anomalies Found.");
 					}
-					else{
+					else
+					{
 						System.out.println( el.buildStringOutput() );
 					}
 					if ( args.length > 1 ) {
@@ -78,6 +83,37 @@ public class GedcomApp {
 									}
 									break;
 								}
+							case "listpeople":
+								if ( args.length < 2 )
+								{
+									System.out.println("Argument Required");
+									break;
+								}
+								else
+								{
+								    try 
+								    {
+								        FileReader fr = new FileReader(fileName);
+								        BufferedReader br = new BufferedReader(fr);
+								        String s;
+								        while((s = br.readLine()) != null)
+								        {
+								        	String[] records = s.split("\\s");
+								        	String tag = records[1];
+								        	String data = records[2];
+							        		if (tag.equals("NAME"))
+							        		{
+							        			System.out.println(tag + " " + data);
+							        		}
+								        }
+								        fr.close();
+								    }
+								    catch(Exception e) 
+								    {
+								        System.out.println("Error: " + e.getMessage());
+								    }//end try catch
+								    break;
+								}								
 							}
 						}
 				}

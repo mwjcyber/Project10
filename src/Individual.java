@@ -163,5 +163,14 @@ public class Individual
 		}
 		System.out.println("Line Number	"+lineNumber);
 	}
+	
+	public void listpeople()
+	{
+		while ( !id.isEmpty() )
+		{
+			System.out.println("ID:	"+id);
+			System.out.println("Name:	"+name);
+		}
+	}
 		
 }

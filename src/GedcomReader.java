@@ -274,12 +274,12 @@ public class GedcomReader
 		}
 	}
 	
-	public Individual getIndividual(String id) {
+	public Individual getIndividual(String id) 
+	{
 		Individual i;
 		try
 		{
-			i = indIndex.get(id);
-			
+			i = indIndex.get(id);			
 		}
 		catch(NullPointerException e)
 		{
@@ -288,6 +288,5 @@ public class GedcomReader
 		
 		return i;
 	}
-	
 	
 }

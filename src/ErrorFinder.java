@@ -23,14 +23,17 @@ public class ErrorFinder
 	
 	//Method to verify a person stated gender and marriage role match
 	public static boolean checkGender(Hashtable<String, Family> famIndex, Hashtable<String, Individual> indIndex, Individual ind)
-	{
-		System.out.print(ind.getGender());
+	{		
 //		if(ind.getGender().equals("F"))
 //		{
+			//debug prints
+//			System.out.print(ind.getGender());
 //			System.out.print(ind.getId());
 //			System.out.print(famIndex.get(ind).getWife());
+		
 //			if (ind.getId() == famIndex.get(ind).getWife());
 //			{
+//			System.out.print(famIndex.get(ind).getWife());
 //				return true;
 //			}			
 //		}			
@@ -41,11 +44,8 @@ public class ErrorFinder
 //				return true;
 //			}
 //		}
-//		else
-//		{
-			return false;
-		}
-//	}
+		return false;
+	}
 	
 	//Method to identify is siblings are listed as married
 	public static boolean checkIncest(Hashtable<String, Family> famIndex, Hashtable<String, Individual> indIndex, Individual ind)
