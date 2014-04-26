@@ -113,7 +113,29 @@ public class GedcomApp {
 								        System.out.println("Error: " + e.getMessage());
 								    }//end try catch
 								    break;
-								}								
+								}
+							case "marriage":
+								if ( args.length < 2 )
+								{
+									System.out.println("Argument Required");
+									break;
+								}
+								else
+								{
+									// Call marriage view
+									break;
+								}
+							case "divorce":
+								if ( args.length < 2 )
+								{
+									System.out.println("Argument Required");
+									break;
+								}
+								else
+								{
+									// Call divorce view
+									break;
+								}
 							}
 						}
 				}
