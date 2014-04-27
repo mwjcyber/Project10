@@ -13,7 +13,7 @@ public class ErrorFinder
 	{
 		for (GregorianCalendar dd : ind.getDeathDate()) 
 		{
-			if (ind.getBirthDate().after(dd)) 
+			if (ind.getBirthDay().after(dd))
 			{
 				return true;
 			}
@@ -23,27 +23,22 @@ public class ErrorFinder
 	
 	//Method to verify a person stated gender and marriage role match
 	public static boolean checkGender(Hashtable<String, Family> famIndex, Hashtable<String, Individual> indIndex, Individual ind)
-	{		
-//		if(ind.getGender().equals("F"))
-//		{
-			//debug prints
-//			System.out.print(ind.getGender());
-//			System.out.print(ind.getId());
-//			System.out.print(famIndex.get(ind).getWife());
-		
-//			if (ind.getId() == famIndex.get(ind).getWife());
-//			{
-//			System.out.print(famIndex.get(ind).getWife());
-//				return true;
-//			}			
-//		}			
-//		else if(ind.getGender().equals("M"))
-//		{
-//			if (ind.getId() == famIndex.get(ind).getHusb());
-//			{
-//				return true;
-//			}
-//		}
+	{
+		Iterator<String> i = ind.getFamS().iterator();
+		while(i.hasNext())
+		{
+			if(ind.getGender().equals("F"))
+			{
+				String s = i.next();
+				famIndex.get(s).getWife();
+			}
+			else if(ind.getGender().equals("M"))
+			{
+				String s = i.next();
+				famIndex.get(s).getHusb();
+			}
+			return true;
+		}		
 		return false;
 	}
 	
@@ -65,4 +60,31 @@ public class ErrorFinder
 		return false;
 	}
 	
+	//Method to identify more than one death date per person
+	public static boolean checkDeaths(Individual ind)
+	{
+		ArrayList<GregorianCalendar> deaths;
+		deaths = ind.getDeathDate();
+		if(deaths.size() > 1)
+			return true;
+		return false;
+	}
+
+	//Method to identify more than one birth date per person
+	public static boolean checkBirths(Individual ind)
+	{
+		ArrayList<GregorianCalendar> births;
+		births = ind.getBirthDate();
+		if(births.size() > 1)
+			return true;
+		return false;
+	}
+	
+	//Method to identify more than one spouse date per person
+	public static boolean checkSpouseCount(Hashtable<String, Family> famIndex, Hashtable<String, Individual> indIndex, Individual ind) 
+	{
+		if ( ind.getFamS().size() >= 2 )
+			return true;
+		return true;
+	}
 }

@@ -32,6 +32,7 @@
 1 CHIL @I3@
 1 CHIL @I4@
 0 NOTE Begin Acceptance Tests
+0 NOTE Sprint 1 Acceptance Tests
 0 NOTE Acceptance Test: getGedcomData
 0 NOTE This test is done in code.
 0 NOTE Data being read in should be printed to the screen during development to ensure it is working.
@@ -41,12 +42,13 @@
 0 NOTE Acceptance Test: displayPerson
 0 NOTE This test is done in code.
 0 NOTE Person should be searchable by name, but entering it in at a prompt.
+0 NOTE Carryover to Sprint 2
 0 NOTE Acceptance Test: displayData
 0 NOTE This test is done in code.
 0 NOTE All GEDCOM data stored in the Data Structure should be displayed.
 0 NOTE Acceptance Test: checkDatesChrono
 0 NOTE This test should trigger an alert that a person's death precedes their birth.
-0 @I10@ INDI
+0 @I05@ INDI
 1 NAME Chrono Test
 1 BIRT
 2 DATE 01 FEB 1970
@@ -54,26 +56,26 @@
 2 DATE 01 FEB 1960
 0 NOTE Acceptance Test: checkIncest
 0 NOTE This test should trigger an alert that a person is married to a sibling.
-0 @I5@ INDI
+0 @I6@ INDI
 1 NAME Father2
 1 SEX M
-1 FAMS @F1@
+1 FAMS @F2@
 1 BIRT
 2 DATE 01 FEB 1970
-0 @I6@ INDI
+0 @I7@ INDI
 1 NAME Mother2
 1 SEX F
-1 FAMS @F1@
+1 FAMS @F2@
 1 BIRT
 2 DATE 01 FEB 1971
-0 @I7@ INDI
+0 @I8@ INDI
 1 NAME Son2
 1 SEX M
 1 FAMC @F2@
 1 FAMS @F3@
 1 BIRT
 2 DATE 01 FEB 2010
-0 @I8@ INDI
+0 @I9@ INDI
 1 NAME Daughter2
 1 SEX F
 1 FAMC @F2@
@@ -81,28 +83,76 @@
 1 BIRT
 2 DATE 01 FEB 2011
 0 @F2@ FAM
-1 HUSB @I5@
-1 WIFE @I6@
+1 HUSB @I6@
+1 WIFE @I7@
 1 MARR
-1 CHIL @I7@
+2 DATE 01 FEB 2004
 1 CHIL @I8@
+1 CHIL @I9@
 0 @F3@ FAM
-1 HUSB @I7@
-1 WIFE @I8@
+1 HUSB @I8@
+1 WIFE @I9@
 1 MARR
 2 DATE 01 FEB 2014
 0 NOTE Acceptance Test: checkGender
 0 NOTE This test should trigger an alert that a person's gender doesn't match their marital role.
+0 NOTE Carry over to Sprint 2
 0 @I11@ INDI
 1 NAME Gender Male
 1 SEX M
-1 FAMS @F3@
+1 FAMS @F4@
 0 @I12@ INDI
 1 NAME Gender Female
 1 SEX F
-1 FAMS @F3@
-0 @F3@ FAM
+1 FAMS @F4@
+0 @F4@ FAM
 1 HUSB @I12@
 1 WIFE @I11@
 1 MARR
+2 DATE 01 FEB 1960
+0 NOTE Sprint 2 Acceptance Tests
+0 NOTE Acceptance Test: setArguments
+0 NOTE This test is done in code.
+0 NOTE User should be able to append file execution with an argument to declare inputs that determind outputs.
+0 NOTE Acceptance Test: displayPeople
+0 NOTE This test is done in code.
+0 NOTE Output should be a list of alphabetically sorted list of all people incldued in the gedcom file
+0 NOTE Acceptance Test: displayMarriage
+0 NOTE This test is done in code.
+0 NOTE Output should be an alphabetical list of people who have been married.
+0 NOTE Acceptance Test: displayDivorce
+0 NOTE This test is done in code.
+0 NOTE Output should be an alphabetical list of people who have been divorced.
+0 NOTE SPRINT 3 ACCEPTANCE TESTS
+0 NOTE ACCEPTANCE TEST: checkDeaths
+0 NOTE This test should trigger an alert that a person has multiple deaths.
+0 @I13@ INDI
+1 NAME checkDeaths Test
+1 DEAT
+2 DATE 01 FEB 1960
+1 DEAT
+2 DATE 01 FEB 1970
+0 NOTE ACCEPTANCE TEST: checkBirths
+0 NOTE This test should trigger an alert that a person has multiple births.
+0 @I14@ INDI
+1 NAME checkBirths Test
+1 BIRT
+2 DATE 01 FEB 1960
+1 BIRT
+2 DATE 01 FEB 1970
+0 NOTE ACCEPTANCE TEST: displayAncestors
+0 NOTE This test is done in code.
+0 NOTE Output should be a list of ancestors associated with a person.
+0 NOTE ACCEPTANCE TEST: displayProdigy
+0 NOTE This test is done in code.
+0 NOTE Output should be a list of children associated with a person. 
+0 NOTE ACCEPTANCE TEST: checkSpouseCount
+0 NOTE This test should trigger an alert that a person has multiple births.
+0 @I15@ INDI
+1 NAME checkSpouseCount Test
+1 FAMS @F3@
+1 FAMS @F2@
+0 NOTE ACCEPTANCE TEST: codeCompliesClean
+0 NOTE This test is done in code.
+0 NOTE Code should compile cleanly without errors or warnings, contains code comments, and is of satisfactory quality.
 0 TRLR

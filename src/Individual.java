@@ -12,7 +12,8 @@ public class Individual
 	private String id;
 	private String name;
 	private String gender;
-	private GregorianCalendar birthDate;
+	private GregorianCalendar birthDay;
+	private ArrayList<GregorianCalendar> birthDate;
 	private ArrayList<GregorianCalendar> deathDate;
 	private HashSet<String> famS;
 	private HashSet<String> famC;
@@ -21,6 +22,7 @@ public class Individual
 	public Individual(String id)
 	{
 		this.id = id;
+		this.birthDate = new ArrayList<GregorianCalendar>();		
 		this.deathDate = new ArrayList<GregorianCalendar>();
 		this.famS = new HashSet<String>();
 		this.famC = new HashSet<String>();
@@ -30,6 +32,7 @@ public class Individual
 	public Individual(String id, int lineNumber)
 	{
 		this.id = id;
+		this.birthDate = new ArrayList<GregorianCalendar>();		
 		this.deathDate = new ArrayList<GregorianCalendar>();
 		this.famS = new HashSet<String>();
 		this.famC = new HashSet<String>();
@@ -50,14 +53,24 @@ public class Individual
 		this.name = name;
 	}
 	
-	public GregorianCalendar getBirthDate()
+	public GregorianCalendar getBirthDay()
+	{
+		return this.birthDay;
+	}
+	
+	public void setBirthDay(GregorianCalendar birthDay)
+	{
+		this.birthDay = birthDay;
+	}
+	
+	public ArrayList<GregorianCalendar> getBirthDate()
 	{
 		return this.birthDate;
 	}
 	
-	public void setBirthDate(GregorianCalendar birthDate)
+	public void addBirthDate(GregorianCalendar birthDate)
 	{
-		this.birthDate = birthDate;
+		this.birthDate.add(birthDate);
 	}
 	
 	public ArrayList<GregorianCalendar> getDeathDate()
@@ -139,7 +152,7 @@ public class Individual
 		System.out.println("ID:	"+id);
 		System.out.println("Name:	"+name);
 		System.out.println("Gender:	"+gender);
-		System.out.println("Birth Date:	"+birthDate.getTime().toString());
+		System.out.println("Birth Date:	"+birthDay.getTime().toString());
 		if ( deathDate.size() > 0 )
 		{
 				for (int i = 0; i<deathDate.size(); i++)
@@ -172,5 +185,16 @@ public class Individual
 			System.out.println("Name:	"+name);
 		}
 	}
-		
+
+	public void marriage()
+	{
+		Iterator<String> i = getFamS().iterator();
+		if ( !famS.isEmpty() )
+		{
+			String line = "Individuals who married:	";
+			for (i = famS.iterator(); i.hasNext();)
+				line = line + i.next() + " ";
+			System.out.println(line);
+		}	
+	}
 }

@@ -105,10 +105,10 @@ public class GedcomReader
 		
 		for (String s : indIndex.keySet()) 
 		{
-			if (ErrorFinder.checkDeathBeforeBirth(indIndex.get(s))) 
-			{
-				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s death occurs before birth."));
-			}
+//			if (ErrorFinder.checkDeathBeforeBirth(indIndex.get(s))) 
+//			{
+//				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s death occurs before birth."));
+//			}
 			
 			if (ErrorFinder.checkGender(famIndex, indIndex, indIndex.get(s)))
 			{
@@ -119,6 +119,21 @@ public class GedcomReader
 			{
 				el.add(new ErrorMessage(indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + " married  a sibling."));
 			}			
+			
+			if (ErrorFinder.checkDeaths(indIndex.get(s))) 
+			{
+				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s has multiple deaths."));
+			}
+			
+			if (ErrorFinder.checkBirths(indIndex.get(s))) 
+			{
+				el.add(new ErrorMessage( indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + "'s has multiple births."));
+			}
+			
+			if (ErrorFinder.checkSpouseCount(famIndex, indIndex, indIndex.get(s)))
+			{
+				el.add(new ErrorMessage(indIndex.get(s).getLineNumber(), "Individual " + indIndex.get(s).getId() + " married  more than one person."));
+			}	
 		}
 		
 		return el;
@@ -216,7 +231,8 @@ public class GedcomReader
 				if(birthDate == true)
 				{
 					birthDate = false;
-					ind.setBirthDate(m);
+					ind.addBirthDate(m);
+					ind.setBirthDay(m);
 				}
 				else if(deathDate == true)
 				{
@@ -284,9 +300,13 @@ public class GedcomReader
 		catch(NullPointerException e)
 		{
 			return null;
-		}
-		
+		}		
 		return i;
 	}
 	
+	public Vector<String> getIndividuals() 
+	{
+		return listOfInds;
+	}
+
 }
