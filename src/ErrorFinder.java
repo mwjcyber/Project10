@@ -4,7 +4,6 @@ import java.util.GregorianCalendar;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Vector;
 
 public class ErrorFinder 
 {
@@ -13,7 +12,7 @@ public class ErrorFinder
 	{
 		for (GregorianCalendar dd : ind.getDeathDate()) 
 		{
-			if (ind.getBirthDay().after(dd))
+			if (ind.getBirthDay().after(dd)) 
 			{
 				return true;
 			}
@@ -21,7 +20,7 @@ public class ErrorFinder
 		return false;
 	}
 	
-	//Method to verify a person stated gender and marriage role match
+	
 	public static boolean checkGender(Hashtable<String, Family> famIndex, Hashtable<String, Individual> indIndex, Individual ind)
 	{
 		Iterator<String> i = ind.getFamS().iterator();
@@ -30,14 +29,21 @@ public class ErrorFinder
 			if(ind.getGender().equals("F"))
 			{
 				String s = i.next();
-				famIndex.get(s).getWife();
+				if (famIndex.containsKey(s))
+				{
+					if (!famIndex.get(s).getWife().isEmpty());
+					return true;
+				}
 			}
 			else if(ind.getGender().equals("M"))
 			{
 				String s = i.next();
-				famIndex.get(s).getHusb();
+				if (famIndex.containsKey(s))
+				{
+					if (!famIndex.get(s).getHusb().isEmpty());
+					return true;
+				}
 			}
-			return true;
 		}		
 		return false;
 	}

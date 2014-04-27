@@ -42,7 +42,7 @@
 0 NOTE Acceptance Test: displayPerson
 0 NOTE This test is done in code.
 0 NOTE Person should be searchable by name, but entering it in at a prompt.
-0 NOTE Carryover to Sprint 2
+0 NOTE Carry-over to Sprint 2
 0 NOTE Acceptance Test: displayData
 0 NOTE This test is done in code.
 0 NOTE All GEDCOM data stored in the Data Structure should be displayed.
@@ -113,10 +113,10 @@
 0 NOTE Sprint 2 Acceptance Tests
 0 NOTE Acceptance Test: setArguments
 0 NOTE This test is done in code.
-0 NOTE User should be able to append file execution with an argument to declare inputs that determind outputs.
+0 NOTE User should be able to append file execution with an argument to declare inputs that determined outputs.
 0 NOTE Acceptance Test: displayPeople
 0 NOTE This test is done in code.
-0 NOTE Output should be a list of alphabetically sorted list of all people incldued in the gedcom file
+0 NOTE Output should be a list of alphabetically sorted list of all people included in the gedcom file
 0 NOTE Acceptance Test: displayMarriage
 0 NOTE This test is done in code.
 0 NOTE Output should be an alphabetical list of people who have been married.
