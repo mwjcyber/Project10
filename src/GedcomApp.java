@@ -3,7 +3,8 @@ import java.io.File;
 
 public class GedcomApp {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) 
+	{
 		if(args.length < 1)
 		{
 			System.out.println("Please enter a GEDCOM File");
@@ -26,16 +27,41 @@ public class GedcomApp {
 				{
 					GedcomReader parser = new GedcomReader();
 					parser.readGedcom(file);
-					ErrorList el = parser.findErrors();					
-					
-					if ( el.size() == 0 ) {
-						System.out.println("File parsed! No Errors or Anomalies Found.");
+					ErrorList el = parser.findErrors();	
+
+					if ( args.length == 1 ) 
+					{
+						System.out.println("Command argument required");
+						System.out.println("Example: java GedcomApp gedcomfile.ged command");
+						System.out.println("");
+						System.out.println("Commands:");
+						System.out.println("errorcheck 	- checks file for errors");
+						System.out.println("ancestor 	- lists ancestors of induvidual");
+						System.out.println("prodigy 	- lists children of induvidual");
+						System.out.println("individual 	- lists information about induvidual");
+						System.out.println("listpeople 	- lists all induviduals in file");
+						System.out.println("marriage 	- displays induviduals who have married");
+						System.out.println("divorce 	- displays induviduals who have divorced");
 					}
-					else{
-						System.out.println( el.buildStringOutput() );
-					}
-					if ( args.length > 1 ) {
-						switch ( args[1] ) {
+					else
+					{
+						switch ( args[1] ) 
+						{
+						case "errorcheck":
+							if ( args.length < 2 )
+							{
+								System.out.println("No individual ID given for ancestor view");
+								break;
+							}
+							else if ( el.size() == 0 ) 
+								{
+									System.out.println("File parsed! No Errors or Anomalies Found.");
+								}
+								else
+								{
+									System.out.println( el.buildStringOutput() );
+								}
+								break;
 							case "ancestor":
 								if ( args.length < 3 )
 								{
@@ -95,6 +121,35 @@ public class GedcomApp {
 									{
 										ind.display();
 									}
+									break;
+								}
+//							case "listpeople":
+//								if ( args.length == 2 )
+//								{
+//									Individual inds = parser.getIndividuals()
+//									inds.listpeople();
+//								    break;
+//								}
+							case "marriage":
+								if ( args.length < 2 )
+								{
+									System.out.println("Argument Required");
+									break;
+								}
+								else
+								{
+									// Call marriage view
+									break;
+								}
+							case "divorce":
+								if ( args.length < 2 )
+								{
+									System.out.println("Argument Required");
+									break;
+								}
+								else
+								{
+									// Call divorce view
 									break;
 								}
 							}
