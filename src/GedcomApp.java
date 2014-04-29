@@ -45,7 +45,17 @@ public class GedcomApp {
 								else
 								{
 									// Call ancestor view
-									break;
+									Individual ind = parser.getIndividual(args[2]);
+									if ( ind == null)
+									{
+										System.out.println("Individual ID not found in given Gedcom file");
+										break;
+									}
+									else
+									{
+										ind.ancestorDisplay(parser, 0);
+										break;
+									}
 								}
 							case "prodigy":
 								if ( args.length < 3 )
@@ -56,8 +66,17 @@ public class GedcomApp {
 								else
 								{
 									// Call prodigy view
-									break;
-								}
+									Individual ind = parser.getIndividual(args[2]);
+									if ( ind == null)
+									{
+										System.out.println("Individual ID not found in given Gedcom file");
+										break;
+									}
+									else
+									{
+										ind.prodigyDisplay(parser, 0);
+										break;
+									}								}
 							case "individual":
 								if ( args.length < 3 )
 								{

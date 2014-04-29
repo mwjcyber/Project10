@@ -289,5 +289,19 @@ public class GedcomReader
 		return i;
 	}
 	
+	public Family getFamily(String id) {
+		Family f;
+		try
+		{
+			f = famIndex.get(id);
+			
+		}
+		catch(NullPointerException e)
+		{
+			return null;
+		}
+		
+		return f;
+	}	
 	
 }

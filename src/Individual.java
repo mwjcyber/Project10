@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Vector;
 
 //Class to generate individual data structure
 public class Individual 
@@ -163,5 +164,88 @@ public class Individual
 		}
 		System.out.println("Line Number	"+lineNumber);
 	}
+	
+	public void ancestorDisplay(GedcomReader parser, int levels)
+	{
+		String tabs = "";
+		for (int l = 0; l < levels; l++)
+		{
+			tabs=tabs+"	"; // Add a tab
+		}
 		
-}
+		if ( !famC.isEmpty() )
+		{
+			for ( Iterator i = famC.iterator(); i.hasNext();)
+			{
+				Family f = parser.getFamily( i.next()+"" );
+				
+				String d = f.getHusb();
+				if( d != "" )
+				{
+					Individual dad = parser.getIndividual(d);
+					System.out.println(tabs+"Father: "+dad.getName()+" - "+dad.getId());
+					dad.ancestorDisplay(parser, levels+1);
+				}
+				else
+				{
+					System.out.println(tabs+"Father Unknown");
+				}
+				
+				String m = f.getWife();
+				if( m != "" )
+				{
+					Individual mom = parser.getIndividual(m);
+					System.out.println(tabs+"Mother: "+mom.getName()+" - "+mom.getId());
+					mom.ancestorDisplay(parser, levels+1);
+				}
+				else
+				{
+					System.out.println(tabs+"Mother Unknown");
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.println(tabs+"No known ancestors");
+		}
+	}
+	
+	public void prodigyDisplay(GedcomReader parser, int levels)
+	{
+		String tabs = "";
+		for (int l = 0; l < levels; l++)
+		{
+			tabs=tabs+"	"; // Add a tab
+		}
+		
+		if ( !famS.isEmpty() )
+		{
+			System.out.println(tabs+"Children:");
+			for ( Iterator i = famS.iterator(); i.hasNext();)
+			{
+				Family f = parser.getFamily( i.next()+"" );
+				
+				Vector<String> children = f.getChildren();
+				if( ! children.isEmpty() )
+				{
+					for ( Iterator h = children.iterator(); h.hasNext();)
+					{
+						Individual child = parser.getIndividual(h.next()+"");
+						System.out.println(tabs+child.getName()+" - "+child.getId());
+						child.prodigyDisplay(parser, levels+1);
+					}
+				}
+				else
+				{
+					System.out.println(tabs+"No know children");
+				}
+				
+			}
+		}
+		else
+		{
+			System.out.println(tabs+"No known children");
+		}
+	}
+}	
